@@ -1,0 +1,45 @@
+[
+    {
+        "name": "unsqueeze_1",
+        "inputs": [
+            "input_0"
+        ],
+        "outputs": [
+            "add_3"
+        ],
+        "kind": {
+            "kind": "OP",
+            "name": "unsqueeze",
+            "type": "TENSOR_MANIPULATION",
+            "args": {
+                "dim": 0
+            }
+        }
+    },
+    {
+        "name": "zeros_2",
+        "inputs": [],
+        "outputs": [
+            "add_3"
+        ],
+        "kind": {
+            "kind": "DATA",
+            "type": "CONSTANT",
+            "value": [[0,0,0,0]]
+        }
+    },
+    {
+        "name": "add_3",
+        "inputs": [
+            "unsqueeze_1",
+            "zeros_2"
+        ],
+        "outputs": [],
+        "kind": {
+            "kind": "OP",
+            "name": "add",
+            "type": "BINARY",
+            "args": {}
+        }
+    }
+]
