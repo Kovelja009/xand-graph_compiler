@@ -14,7 +14,8 @@
             "args": {
                 "dim": 0
             }
-        }
+        },
+        "is_output": false
     },
     {
         "name": "zeros_2",
@@ -26,7 +27,9 @@
             "kind": "DATA",
             "type": "CONSTANT",
             "value": [[0,0,0,0]]
-        }
+        },
+        "is_output": false
+
     },
     {
         "name": "add_3",
@@ -40,6 +43,7 @@
             "name": "add",
             "type": "BINARY",
             "args": {}
-        }
+        },
+        "is_output": true
     }
 ]

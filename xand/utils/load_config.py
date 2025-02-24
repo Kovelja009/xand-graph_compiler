@@ -2,8 +2,8 @@ import json
 from typing import Dict, Any, Union
 import torch
 
-from graph import Graph, Node, Data, Operation, DataType
-from ops import op_map
+from ..graph import Graph, Node, Data, Operation, DataType
+from ..ops import op_map
 
 
 def create_operation(op_config: Dict[str, Any]) -> Operation:
@@ -88,6 +88,8 @@ def load_config(config_path: str, input_sample: Union[torch.Tensor, Dict[str, to
             node = create_node(node_config, input_values)
             nodes_map[node_config["name"]] = node
             graph.add_node(node)
+            if node_config["is_output"]:
+                graph.output_nodes.append(node)
             
             
     # Second pass: Connect nodes

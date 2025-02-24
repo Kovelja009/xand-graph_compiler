@@ -1,6 +1,6 @@
 import torch
 
-from graph import Operation, OperationType
+from ..graph import Operation, OperationType
 from typing import Dict, Any, List, Tuple, Type, TypeVar
 
 class Add(Operation):
