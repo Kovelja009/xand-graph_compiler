@@ -134,6 +134,41 @@ class Unsqueeze(Operation):
         
         return input_shapes[0][:dim] + [1] + (input_shapes[0][dim:] if dim < len(input_shapes[0]) else [])
     
+    
+class Transpose(Operation):
+    def __init__(self, name: str, op_type: OperationType, args: Dict[str, Any] = {}):
+        # Transpose typically requires two dimensions to swap
+        if "dim0" not in args or "dim1" not in args:
+            raise ValueError("Transpose operation requires 'dim0' and 'dim1' arguments")
+        super().__init__(name, op_type, args)
+        
+    def forward(self, tensors: List[torch.Tensor]) -> torch.Tensor:
+        assert len(tensors) == 1, "Transpose operation requires exactly 1 input tensor"
+        return tensors[0].transpose(dim0=self.args["dim0"], dim1=self.args["dim1"])
+    
+    def infer_shape(self, input_shapes: List[List[int]]) -> List[int]:
+        assert len(input_shapes) == 1, "Transpose operation requires exactly 1 input shape"
+        
+        dim0 = self.args["dim0"]
+        dim1 = self.args["dim1"]
+        input_shape = input_shapes[0]
+        
+        # Handle negative indexing
+        if dim0 < 0:
+            dim0 += len(input_shape)
+        if dim1 < 0:
+            dim1 += len(input_shape)
+            
+        # Validate dimensions
+        if dim0 >= len(input_shape) or dim1 >= len(input_shape):
+            raise ValueError(f"Transpose dimensions {dim0} and {dim1} out of bounds for shape {input_shape}")
+            
+        # Create the output shape by swapping the specified dimensions
+        output_shape = input_shape.copy()
+        output_shape[dim0], output_shape[dim1] = output_shape[dim1], output_shape[dim0]
+        
+        return output_shape
+    
 
 T = TypeVar("T", bound=Operation)
     
@@ -142,4 +177,5 @@ op_map: Dict[str, Tuple[Type[Operation], OperationType]] = {
     "add": (Add, OperationType.BINARY),
     "unsqueeze": (Unsqueeze, OperationType.TENSOR_MANIPULATION),   
     "matmul": (Matmul, OperationType.BINARY),
+    "transpose": (Transpose, OperationType.TENSOR_MANIPULATION)
 }

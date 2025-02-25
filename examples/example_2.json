@@ -1,0 +1,38 @@
+[
+    {
+        "name": "transpose_1",
+        "inputs": [
+            "input_0"
+        ],
+        "outputs": [
+            "transpose_2"
+        ],
+        "kind": {
+            "kind": "OP",
+            "name": "transpose",
+            "type": "TENSOR_MANIPULATION",
+            "args": {
+                "dim0": 0,
+                "dim1": 1
+            }
+        },
+        "is_output": false
+    },
+    {
+        "name": "transpose_2",
+        "inputs": [
+            "transpose_1"
+        ],
+        "outputs": [],
+        "kind": {
+            "kind": "OP",
+            "name": "transpose",
+            "type": "TENSOR_MANIPULATION",
+            "args": {
+                "dim0": 0,
+                "dim1": 1
+            }
+        },
+        "is_output": true
+    }
+]

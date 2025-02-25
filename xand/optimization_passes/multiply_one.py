@@ -69,9 +69,6 @@ def matmul_identity(graph: Graph) -> Graph:
             break  # No matmul operations to optimize
         
         for matmul_node in matmul_ops:
-            # Check if operation is binary (has exactly 2 inputs)
-            if len(matmul_node.inputs) != 2:
-                continue
             
             # Check if any of the inputs are identity matrices
             identity_inputs = []
