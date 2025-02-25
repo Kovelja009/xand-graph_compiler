@@ -1,0 +1,61 @@
+[
+
+    {
+        "name": "zeros_2",
+        "inputs": [],
+        "outputs": [
+            "add_1"
+        ],
+        "kind": {
+            "kind": "DATA",
+            "type": "CONSTANT",
+            "value": [[0.0, 0.0], [0.0, 0.0]]
+        },
+        "is_output": false
+    },
+    {
+        "name": "add_1",
+        "inputs": [
+            "input_0",
+            "zeros_2"
+        ],
+        "outputs": [
+            "matmul_3"
+        ],
+        "kind": {
+            "kind": "OP",
+            "name": "add",
+            "type": "BINARY",
+            "args": {}
+        },
+        "is_output": false
+    },
+    {
+        "name": "identity_4",
+        "inputs": [],
+        "outputs": [
+            "matmul_3"
+        ],
+        "kind": {
+            "kind": "DATA",
+            "type": "CONSTANT",
+            "value": [[1.0, 0.0], [0.0, 1.0]]
+        },
+        "is_output": false
+    },
+    {
+        "name": "matmul_3",
+        "inputs": [
+            "add_1",
+            "identity_4"
+        ],
+        "outputs": [],
+        "kind": {
+            "kind": "OP",
+            "name": "matmul",
+            "type": "BINARY",
+            "args": {}
+        },
+        "is_output": true
+    }
+]

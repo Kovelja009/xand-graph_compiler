@@ -14,7 +14,7 @@ def is_zero_tensor(node: Node) -> bool:
     # Check if all elements are zero
     return bool(torch.all(tensor == 0).item())
 
-def remove_sums_with_identity(graph: Graph) -> Graph:
+def sum_identity(graph: Graph) -> Graph:
     '''
     Removes unnecessary additions with zero.
     
@@ -24,12 +24,12 @@ def remove_sums_with_identity(graph: Graph) -> Graph:
     
     Example:
         Input graph:
-            input_0 → add_1 → output
-                ↑
-            zeros_2
+            input → add → output
+                     ↑
+                   zeros
             
         After optimization:
-            input_0 → output
+            input → output
     '''
     
     # Continue optimizing until no more changes can be made
@@ -88,6 +88,9 @@ def remove_sums_with_identity(graph: Graph) -> Graph:
                 
                 # Remove other nodes if they're not used by any other node
                 for node in nodes_to_remove:
+                    # first remove add_node from outputs
+                    if add_node in node.outputs:
+                        node.outputs.remove(add_node)
                     if not node.outputs:
                         if node in graph.nodes:
                             graph.nodes.remove(node)
