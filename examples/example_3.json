@@ -1,0 +1,68 @@
+[
+    {
+        "name": "ones_1",
+        "inputs": [],
+        "outputs": [
+            "add_3"
+        ],
+        "kind": {
+            "kind": "DATA",
+            "type": "CONSTANT",
+            "value": [
+                [1.0, 1.0, 1.0],
+                [1.0, 1.0, 1.0],
+                [1.0, 1.0, 1.0]
+            ]
+        },
+        "is_output": false
+    },
+    {
+        "name": "twos_2",
+        "inputs": [],
+        "outputs": [
+            "add_3"
+        ],
+        "kind": {
+            "kind": "DATA",
+            "type": "CONSTANT",
+            "value": [
+                [2.0, 2.0, 2.0],
+                [2.0, 2.0, 2.0],
+                [2.0, 2.0, 2.0]
+            ]
+        },
+        "is_output": false
+    },
+    {
+        "name": "add_3",
+        "inputs": [
+            "ones_1",
+            "twos_2"
+        ],
+        "outputs": [
+            "add_4"
+        ],
+        "kind": {
+            "kind": "OP",
+            "name": "add",
+            "type": "BINARY",
+            "args": {}
+        },
+        "is_output": false
+    },
+    {
+        "name": "add_4",
+        "inputs": [
+            "input_0",
+            "add_3"
+        ],
+        "outputs": [],
+        "kind": {
+            "kind": "OP",
+            "name": "add",
+            "type": "BINARY",
+            "args": {}
+        },
+        "is_output": true
+    }
+]
