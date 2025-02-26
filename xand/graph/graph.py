@@ -1,7 +1,7 @@
 
 from typing import List, Dict, Set
-from .node import Node, Data
 import torch
+from .node import Node, Data
 
 class Graph:
     def __init__(self):

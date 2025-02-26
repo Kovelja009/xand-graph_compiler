@@ -1,7 +1,6 @@
-import torch
-
-from ..graph import Operation, OperationType
 from typing import Dict, Any, List, Tuple, Type, TypeVar
+import torch
+from ..graph import Operation, OperationType
 
 class Add(Operation):
     def __init__(self, name: str, op_type: OperationType, args: Dict[str, Any] = {}):

@@ -1,7 +1,7 @@
-import torch
+from abc import ABC, abstractmethod
 from enum import Enum, auto
 from typing import List, Dict, Any, Optional, Union
-from abc import ABC, abstractmethod
+import torch
 
 class DataType(Enum):
     CONSTANT = auto()

@@ -1,5 +1,4 @@
-from typing import List, Set
-from ..graph import Graph, Node
+from ..graph import Graph
 
 def transpose_cancelation(graph: Graph) -> Graph:
     '''
